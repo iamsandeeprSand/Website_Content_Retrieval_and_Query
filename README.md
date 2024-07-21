@@ -34,7 +34,7 @@ This project is a web-based system that retrieves content from a specified URL, 
    pip install -r requirements.txt
    
 
-##Running the Application
+## Running the Application
 1. Ensure Milvus is running on your machine or server.
 2. Start the FastAPI server
    ```bash
@@ -80,21 +80,21 @@ Deployment
      ```bash
      uvicorn main:app --host 127.0.0.1 --port 8000
 
-#Detailed Function Descriptions
-##WebScraper Class
+# Detailed Function Descriptions
+## WebScraper Class
 __init__(self, url, headers=None): Initializes the WebScraper with the given URL.
 extract_paragraphs(html_content): Extracts paragraphs from the HTML content.
 fetch_page(self): Fetches the HTML content of the page.
 fetch_and_extract_p(self): Fetches the HTML content and extracts paragraphs, returning them as a single string.
 
-##Utility Functions
+## Utility Functions
 paragraph_to_sentences(paragraph): Splits a paragraph into sentences and tokenizes them into words.
 get_embeddings(sentences): Generates embeddings for a list of sentences using the pre-trained sentence transformer model.
 store_in_milvus(sentences, embeddings): Stores sentences and their embeddings in Milvus.
 fetch_from_milvus(query_embedding, top_k=5): Fetches the top-k most similar sentences from Milvus based on the query embedding.
 generate_answer(query, context, max_length=100): Generates an answer to the query using GPT-2, with the provided context.
 
-#Models Used
+# Models Used
 Sentence Transformer Model
 Model: all-MiniLM-L6-v2
 Purpose: To generate sentence embeddings for the retrieved text content.
@@ -117,7 +117,7 @@ fastapi: A modern, fast web framework for building APIs with Python.
 pydantic: For data validation and settings management using Python type annotations.
 
   
-##Docker Deployment
+## Docker Deployment
    You can use Docker to containerize the application for easier deployment. Create a Dockerfile with the following contents:
       ```bash
    # Use the official Python image from the Docker Hub
@@ -142,20 +142,20 @@ pydantic: For data validation and settings management using Python type annotati
         CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
    To build and run the Docker container:
-      ```bash
-         docker build -t web-content-query-system .
+      
+         docker build -t web-content-query-system
          docker run -p 8000:8000 web-content-query-system
 
-Cloud Deployment
+## Cloud Deployment
 For deploying on a cloud platform like AWS, Google Cloud, or Azure, follow the respective platform's instructions to deploy a Docker container. Ensure you have set up the necessary environment variables and configurations.
 
-Presentation and Architecture
+## Presentation and Architecture
 A detailed presentation of the system architecture, design decisions, and implementation steps can be found in the docs directory. The presentation includes diagrams, flowcharts, and explanations of key components.
 
-Working Demo
+## Working Demo
 To see the system in action, follow the setup instructions and run the application locally or deploy it to your preferred platform. A demonstration video is available in the docs/demo.mp4 file.
 
-Contributing
+## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
  
 
