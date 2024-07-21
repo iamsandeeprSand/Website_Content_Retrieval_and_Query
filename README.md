@@ -63,7 +63,7 @@ Endpoint: /query
 Method: POST
    Request Body:
    
-     ```bash
+     
      {
        "query": "What is the capital of France?",
        "use_milvus": true
@@ -77,7 +77,6 @@ Deployment
    Local Deployment
    To run the application locally, ensure you have followed the setup instructions and installed all necessary packages. Use the command:
    
-     ```bash
      uvicorn main:app --host 127.0.0.1 --port 8000
 
 # Detailed Function Descriptions
@@ -119,8 +118,8 @@ Packages and Their Uses
   
 ## Docker Deployment
    You can use Docker to containerize the application for easier deployment. Create a Dockerfile with the following contents:
-      ```bash
-   # Use the official Python image from the Docker Hub
+
+       # Use the official Python image from the Docker Hub
          FROM python:3.8-slim
         
         # Set the working directory
