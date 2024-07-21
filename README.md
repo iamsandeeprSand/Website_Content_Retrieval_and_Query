@@ -82,7 +82,7 @@ Deployment
 
 # Detailed Function Descriptions
 ## WebScraper Class
-__init__(self, url, headers=None): Initializes the WebScraper with the given URL.
+**__init__(self, url, headers=None):** Initializes the WebScraper with the given URL.
 extract_paragraphs(html_content): Extracts paragraphs from the HTML content.
 fetch_page(self): Fetches the HTML content of the page.
 fetch_and_extract_p(self): Fetches the HTML content and extracts paragraphs, returning them as a single string.
