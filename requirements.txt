@@ -1,0 +1,11 @@
+beautifulsoup4==4.9.3
+requests==2.25.1
+Flask==1.1.2
+nltk==3.5
+sentence-transformers==2.0.0
+transformers==4.6.1
+pymilvus==2.0.0
+nest_asyncio==1.5.1
+uvicorn==0.13.4
+fastapi==0.65.1
+pydantic==1.8.2
