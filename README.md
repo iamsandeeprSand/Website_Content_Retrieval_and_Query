@@ -77,17 +77,17 @@ Method: POST
 
 # Detailed Function Descriptions
 ## WebScraper Class
--**__init__(self, url, headers=None):**  Initializes the WebScraper with the given URL.
--**extract_paragraphs(html_content):** Extracts paragraphs from the HTML content.
--**fetch_page(self):** Fetches the HTML content of the page.
--**fetch_and_extract_p(self):** Fetches the HTML content and extracts paragraphs, returning them as a single string.
+- **__init__(self, url, headers=None):**  Initializes the WebScraper with the given URL.
+- **extract_paragraphs(html_content):** Extracts paragraphs from the HTML content.
+- **fetch_page(self):** Fetches the HTML content of the page.
+- **fetch_and_extract_p(self):** Fetches the HTML content and extracts paragraphs, returning them as a single string.
 
 ## Utility Functions
--**paragraph_to_sentences(paragraph):** Splits a paragraph into sentences and tokenizes them into words.
--**get_embeddings(sentences):** Generates embeddings for a list of sentences using the pre-trained sentence transformer model.
--**store_in_milvus(sentences, embeddings):** Stores sentences and their embeddings in Milvus.
--**fetch_from_milvus(query_embedding, top_k=5):** Fetches the top-k most similar sentences from Milvus based on the query embedding.
--**generate_answer(query, context, max_length=100):** Generates an answer to the query using GPT-2, with the provided context.
+- **paragraph_to_sentences(paragraph):** Splits a paragraph into sentences and tokenizes them into words.
+- **get_embeddings(sentences):** Generates embeddings for a list of sentences using the pre-trained sentence transformer model.
+- **store_in_milvus(sentences, embeddings):** Stores sentences and their embeddings in Milvus.
+- **fetch_from_milvus(query_embedding, top_k=5):** Fetches the top-k most similar sentences from Milvus based on the query embedding.
+- **generate_answer(query, context, max_length=100):** Generates an answer to the query using GPT-2, with the provided context.
 
 # Models Used
 Sentence Transformer Model
