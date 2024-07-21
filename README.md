@@ -46,13 +46,13 @@ Load Website Content
 Endpoint: /load
 Method: POST
    Request Body
-            ```bash
-           {
-           "url": "https://example.com"
-           }
+   
+               {
+               "url": "https://example.com"
+               }
 
    Response:
-     ```bash
+     
      {
        "message": "Content loaded successfully"
      }
@@ -69,7 +69,7 @@ Method: POST
        "use_milvus": true
      }
    Response:
-     ```bash
+     
      {
        "answer": "The capital of France is Paris."
      }
@@ -82,39 +82,39 @@ Deployment
 
 # Detailed Function Descriptions
 ## WebScraper Class
-**__init__(self, url, headers=None):** Initializes the WebScraper with the given URL.
-extract_paragraphs(html_content): Extracts paragraphs from the HTML content.
-fetch_page(self): Fetches the HTML content of the page.
-fetch_and_extract_p(self): Fetches the HTML content and extracts paragraphs, returning them as a single string.
+**__init__(self, url, headers=None):**  Initializes the WebScraper with the given URL.
+**extract_paragraphs(html_content):** Extracts paragraphs from the HTML content.
+**fetch_page(self):** Fetches the HTML content of the page.
+**fetch_and_extract_p(self):** Fetches the HTML content and extracts paragraphs, returning them as a single string.
 
 ## Utility Functions
-paragraph_to_sentences(paragraph): Splits a paragraph into sentences and tokenizes them into words.
-get_embeddings(sentences): Generates embeddings for a list of sentences using the pre-trained sentence transformer model.
-store_in_milvus(sentences, embeddings): Stores sentences and their embeddings in Milvus.
-fetch_from_milvus(query_embedding, top_k=5): Fetches the top-k most similar sentences from Milvus based on the query embedding.
-generate_answer(query, context, max_length=100): Generates an answer to the query using GPT-2, with the provided context.
+**paragraph_to_sentences(paragraph):** Splits a paragraph into sentences and tokenizes them into words.
+**get_embeddings(sentences):** Generates embeddings for a list of sentences using the pre-trained sentence transformer model.
+**store_in_milvus(sentences, embeddings):** Stores sentences and their embeddings in Milvus.
+**fetch_from_milvus(query_embedding, top_k=5):** Fetches the top-k most similar sentences from Milvus based on the query embedding.
+**generate_answer(query, context, max_length=100):** Generates an answer to the query using GPT-2, with the provided context.
 
 # Models Used
 Sentence Transformer Model
-Model: all-MiniLM-L6-v2
-Purpose: To generate sentence embeddings for the retrieved text content.
-Details: This model is a smaller, faster, and more efficient version of the BERT model, designed for sentence and paragraph embeddings.
+**Model:** all-MiniLM-L6-v2
+**Purpose:** To generate sentence embeddings for the retrieved text content.
+**Details:** This model is a smaller, faster, and more efficient version of the BERT model, designed for sentence and paragraph embeddings.
 GPT-2 Model
-Model: gpt2
-Purpose: To generate natural language answers based on the query and context.
-Details: GPT-2 is a large transformer-based language model trained by OpenAI that can generate coherent and contextually relevant text.
+**Model:** gpt2
+**Purpose:** To generate natural language answers based on the query and context.
+**Details:** GPT-2 is a large transformer-based language model trained by OpenAI that can generate coherent and contextually relevant text.
 Packages and Their Uses
-beautifulsoup4: For parsing HTML content and extracting text.
-requests: For making HTTP requests to fetch web pages.
-Flask: A lightweight WSGI web application framework (used in the example code but not in the FastAPI-based implementation).
-nltk: For natural language processing tasks such as sentence tokenization.
-sentence-transformers: For generating sentence embeddings using pre-trained models.
-transformers: For utilizing the GPT-2 model to generate text.
-pymilvus: For interacting with the Milvus vector database to store and retrieve embeddings.
-nest_asyncio: To allow nested use of asyncio.run() (useful in Jupyter notebooks).
-uvicorn: An ASGI server for serving the FastAPI application.
-fastapi: A modern, fast web framework for building APIs with Python.
-pydantic: For data validation and settings management using Python type annotations.
+**beautifulsoup4:** For parsing HTML content and extracting text.
+**requests:** For making HTTP requests to fetch web pages.
+**Flask:** A lightweight WSGI web application framework (used in the example code but not in the FastAPI-based implementation).
+**nltk:** For natural language processing tasks such as sentence tokenization.
+**sentence-transformers:** For generating sentence embeddings using pre-trained models.
+**transformers:** For utilizing the GPT-2 model to generate text.
+**pymilvus:** For interacting with the Milvus vector database to store and retrieve embeddings.
+**nest_asyncio:** To allow nested use of asyncio.run() (useful in Jupyter notebooks).
+**uvicorn:** An ASGI server for serving the FastAPI application.
+**fastapi:** A modern, fast web framework for building APIs with Python.
+**pydantic:** For data validation and settings management using Python type annotations.
 
   
 ## Docker Deployment
