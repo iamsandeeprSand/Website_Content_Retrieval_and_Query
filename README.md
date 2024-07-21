@@ -183,8 +183,7 @@ A detailed presentation of the system architecture, design decisions, and implem
 
 ## Working Demo
 To see the system in action, follow the setup instructions and run the application locally or deploy it to your preferred platform.
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
+
  
 
 
