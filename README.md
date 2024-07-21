@@ -90,35 +90,35 @@ Method: POST
 - **generate_answer(query, context, max_length=100):** Generates an answer to the query using GPT-2, with the provided context.
 
 # Models Used
-Sentence Transformer Model
-**Model:** all-MiniLM-L6-v2
-**Purpose:** To generate sentence embeddings for the retrieved text content.
-**Details:** This model is a smaller, faster, and more efficient version of the BERT model, designed for sentence and paragraph embeddings.
-GPT-2 Model
-**Model:** gpt2
-**Purpose:** To generate natural language answers based on the query and context.
-**Details:** GPT-2 is a large transformer-based language model trained by OpenAI that can generate coherent and contextually relevant text.
+## Sentence Transformer Model
+- **Model:** all-MiniLM-L6-v2
+- **Purpose:** To generate sentence embeddings for the retrieved text content.
+- **Details:** This model is a smaller, faster, and more efficient version of the BERT model, designed for sentence and paragraph embeddings.
+## GPT-2 Model
+- **Model:** gpt2
+- **Purpose:** To generate natural language answers based on the query and context.
+- **Details:** GPT-2 is a large transformer-based language model trained by OpenAI that can generate coherent and contextually relevant text.
 
 
 #  Packages and Their Uses
-**beautifulsoup4:** For parsing HTML content and extracting text.
-**requests:** For making HTTP requests to fetch web pages.
-**Flask:** A lightweight WSGI web application framework (used in the example code but not in the FastAPI-based implementation).
-**nltk:** For natural language processing tasks such as sentence tokenization.
-**sentence-transformers:** For generating sentence embeddings using pre-trained models.
-**transformers:** For utilizing the GPT-2 model to generate text.
-**pymilvus:** For interacting with the Milvus vector database to store and retrieve embeddings.
-**nest_asyncio:** To allow nested use of asyncio.run() (useful in Jupyter notebooks).
-**uvicorn:** An ASGI server for serving the FastAPI application.
-**fastapi:** A modern, fast web framework for building APIs with Python.
-**pydantic:** For data validation and settings management using Python type annotations.
+- **beautifulsoup4:** For parsing HTML content and extracting text.
+- **requests:** For making HTTP requests to fetch web pages.
+- **Flask:** A lightweight WSGI web application framework (used in the example code but not in the FastAPI-based implementation).
+- **nltk:** For natural language processing tasks such as sentence tokenization.
+- **sentence-transformers:** For generating sentence embeddings using pre-trained models.
+- **transformers:** For utilizing the GPT-2 model to generate text.
+- **pymilvus:** For interacting with the Milvus vector database to store and retrieve embeddings.
+- **nest_asyncio:** To allow nested use of asyncio.run() (useful in Jupyter notebooks).
+- **uvicorn:** An ASGI server for serving the FastAPI application.
+- **fastapi:** A modern, fast web framework for building APIs with Python.
+- **pydantic:** For data validation and settings management using Python type annotations.
 
 # Using Postman for API Testing
 If direct integration with a website is not working, you can use Postman to test the API endpoints.
 
 1. Loading Website Content
 2. Open Postman and create a new POST request.
-3.Set the URL to http://127.0.0.1:8000/load.
+3. Set the URL to http://127.0.0.1:8000/load.
 4. In the Body tab, select raw and set the format to JSON.
 5. Enter the JSON body:
 
