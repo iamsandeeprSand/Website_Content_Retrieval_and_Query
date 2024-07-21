@@ -46,10 +46,10 @@ Load Website Content
 Endpoint: /load
 Method: POST
    Request Body
-   
-               {
-               "url": "https://example.com"
-               }
+
+      {
+      "url": "https://example.com"
+      }
 
    Response:
      
@@ -73,11 +73,7 @@ Method: POST
      {
        "answer": "The capital of France is Paris."
      }
-Deployment
-   Local Deployment
-   To run the application locally, ensure you have followed the setup instructions and installed all necessary packages. Use the command:
-   
-     uvicorn main:app --host 127.0.0.1 --port 8000
+
 
 # Detailed Function Descriptions
 ## WebScraper Class
@@ -102,7 +98,9 @@ GPT-2 Model
 **Model:** gpt2
 **Purpose:** To generate natural language answers based on the query and context.
 **Details:** GPT-2 is a large transformer-based language model trained by OpenAI that can generate coherent and contextually relevant text.
-Packages and Their Uses
+
+
+#  Packages and Their Uses
 **beautifulsoup4:** For parsing HTML content and extracting text.
 **requests:** For making HTTP requests to fetch web pages.
 **Flask:** A lightweight WSGI web application framework (used in the example code but not in the FastAPI-based implementation).
@@ -114,6 +112,38 @@ Packages and Their Uses
 **uvicorn:** An ASGI server for serving the FastAPI application.
 **fastapi:** A modern, fast web framework for building APIs with Python.
 **pydantic:** For data validation and settings management using Python type annotations.
+
+# Using Postman for API Testing
+If direct integration with a website is not working, you can use Postman to test the API endpoints.
+
+1. Loading Website Content
+2. Open Postman and create a new POST request.
+3.Set the URL to http://127.0.0.1:8000/load.
+4. In the Body tab, select raw and set the format to JSON.
+5. Enter the JSON body:
+
+         {
+           "url": "https://example.com"
+         }
+6. Click Send to load the website content.
+
+## Querying Content
+1. Open Postman and create a new POST request.
+2. Set the URL to http://127.0.0.1:8000/query.
+3. In the Body tab, select raw and set the format to JSON.
+4. Enter the JSON body:
+
+         {
+           "query": "What is the capital of France?",
+           "use_milvus": true
+         }
+5. Click Send to get the query response.
+
+# Deployment
+## Local Deployment
+   To run the application locally, ensure you have followed the setup instructions and installed all necessary packages. Use the command:
+   
+     uvicorn main:app --host 127.0.0.1 --port 8000
 
   
 ## Docker Deployment
@@ -152,8 +182,7 @@ For deploying on a cloud platform like AWS, Google Cloud, or Azure, follow the r
 A detailed presentation of the system architecture, design decisions, and implementation steps can be found in the docs directory. The presentation includes diagrams, flowcharts, and explanations of key components.
 
 ## Working Demo
-To see the system in action, follow the setup instructions and run the application locally or deploy it to your preferred platform. A demonstration video is available in the docs/demo.mp4 file.
-
+To see the system in action, follow the setup instructions and run the application locally or deploy it to your preferred platform.
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
  
