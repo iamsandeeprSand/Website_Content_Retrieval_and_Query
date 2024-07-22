@@ -175,14 +175,6 @@ If direct integration with a website is not working, you can use Postman to test
          docker build -t web-content-query-system
          docker run -p 8000:8000 web-content-query-system
 
-## Cloud Deployment
-For deploying on a cloud platform like AWS, Google Cloud, or Azure, follow the respective platform's instructions to deploy a Docker container. Ensure you have set up the necessary environment variables and configurations.
-
-## Presentation and Architecture
-A detailed presentation of the system architecture, design decisions, and implementation steps can be found in the docs directory. The presentation includes diagrams, flowcharts, and explanations of key components.
-
-## Working Demo
-To see the system in action, follow the setup instructions and run the application locally or deploy it to your preferred platform.
 
  
 
