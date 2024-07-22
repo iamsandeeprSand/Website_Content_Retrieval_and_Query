@@ -27,7 +27,7 @@ This project is a web-based system that retrieves content from a specified URL, 
 2. Create a virtual environment:
    ```bash
    python3 -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   source venv\Scripts\activate
 
 3. Install the required packages:
    ```bash
@@ -38,7 +38,7 @@ This project is a web-based system that retrieves content from a specified URL, 
 1. Ensure Milvus is running on your machine or server.
 2. Start the FastAPI server
    ```bash
-   python main.py
+   python NLP_Task.py # I have used Jupyter Notebook
 3. The application will be accessible at http://127.0.0.1:8000.
 
 API Endpoints
