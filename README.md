@@ -1,191 +1,116 @@
-# Web Content Retrieval and Query System
+# Web Scraping and Text Analysis with GPT-2 Fine-Tuning and Milvus Integration
 
-This project is a web-based system that retrieves content from a specified URL, processes it into sentences, embeds those sentences, stores the embeddings in Milvus, and allows querying for relevant content using a GPT-2 model to generate answers. 
+This project demonstrates a pipeline for web scraping, text preprocessing, embeddings generation, storage in Milvus, and fine-tuning GPT-2 for text generation. It integrates multiple technologies to showcase a complete workflow for handling text data and generating context-aware responses.
 
-## Features
+## Table of Contents
 
-- **Web Scraping**: Fetch and extract text content from web pages.
-- **Sentence Embeddings**: Generate embeddings for sentences using a pre-trained sentence transformer model.
-- **Milvus Integration**: Store and search sentence embeddings in a Milvus collection.
-- **GPT-2 Model**: Generate answers to queries using the GPT-2 language model.
-- **FastAPI Backend**: Serve the functionalities via a FastAPI application.
-
-## Setup Instructions
-
-### Prerequisites
-
-- Python 3.8 or higher
-- Milvus (Follow the [Milvus installation guide](https://milvus.io/docs/v2.0.0/install_standalone-docker.md) to set up Milvus)
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/iamsandeeprSand/Website_Content_Retrieval_and_Query.git
-   cd Website_Content_Retrieval_and_Query
-   
-2. Create a virtual environment:
-   ```bash
-   python3 -m venv venv
-   source venv\Scripts\activate
-
-3. Install the required packages:
-   ```bash
-   pip install -r requirements.txt
-   
-
-## Running the Application
-1. Ensure Milvus is running on your machine or server.
-2. Start the FastAPI server
-   ```bash
-   python NLP_Task.py # I have used Jupyter Notebook
-3. The application will be accessible at http://127.0.0.1:8000.
-
-API Endpoints
-Load Website Content
-Endpoint: /load
-Method: POST
-   Request Body
-
-      {
-      "url": "https://example.com"
-      }
-
-   Response:
-     
-     {
-       "message": "Content loaded successfully"
-     }
+- [Introduction](#introduction)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Functions and Classes](#functions-and-classes)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
 
 
-Query Content
-Endpoint: /query
-Method: POST
-   Request Body:
-   
-     
-     {
-       "query": "What is the capital of France?",
-       "use_milvus": true
-     }
-   Response:
-     
-     {
-       "answer": "The capital of France is Paris."
-     }
+## Introduction
 
+This project is designed to scrape web content, preprocess the text, generate embeddings, store them in Milvus, and fine-tune a GPT-2 model to generate responses based on the stored text. It demonstrates the integration of various tools and frameworks to build a comprehensive text processing pipeline.
 
-# Detailed Function Descriptions
-## WebScraper Class
-- **__init__(self, url, headers=None):**  Initializes the WebScraper with the given URL.
-- **extract_paragraphs(html_content):** Extracts paragraphs from the HTML content.
-- **fetch_page(self):** Fetches the HTML content of the page.
-- **fetch_and_extract_p(self):** Fetches the HTML content and extracts paragraphs, returning them as a single string.
+## Technologies Used
 
-## Utility Functions
-- **paragraph_to_sentences(paragraph):** Splits a paragraph into sentences and tokenizes them into words.
-- **get_embeddings(sentences):** Generates embeddings for a list of sentences using the pre-trained sentence transformer model.
-- **store_in_milvus(sentences, embeddings):** Stores sentences and their embeddings in Milvus.
-- **fetch_from_milvus(query_embedding, top_k=5):** Fetches the top-k most similar sentences from Milvus based on the query embedding.
-- **generate_answer(query, context, max_length=100):** Generates an answer to the query using GPT-2, with the provided context.
+- **Web Scraping**: `requests`, `BeautifulSoup`
+- **Text Preprocessing**: `nltk`
+- **Embeddings**: `SentenceTransformer`
+- **Vector Database**: `Milvus`
+- **Deep Learning Model**: `GPT-2` from `transformers`
+- **Web Framework**: `FastAPI`
+- **Containerization**: `Docker`
+- **Testing**: `Postman`
 
-# Models Used
-## Sentence Transformer Model
-- **Model:** all-MiniLM-L6-v2
-- **Purpose:** To generate sentence embeddings for the retrieved text content.
-- **Details:** This model is a smaller, faster, and more efficient version of the BERT model, designed for sentence and paragraph embeddings.
-## GPT-2 Model
-- **Model:** gpt2
-- **Purpose:** To generate natural language answers based on the query and context.
-- **Details:** GPT-2 is a large transformer-based language model trained by OpenAI that can generate coherent and contextually relevant text.
+## Installation
 
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/iamsandeeprSand/Website_Content_Retrieval_and_Query.git
+    cd Website_Content_Retrieval_and_Query
+    ```
 
-#  Packages and Their Uses
-- **beautifulsoup4:** For parsing HTML content and extracting text.
-- **requests:** For making HTTP requests to fetch web pages.
-- **Flask:** A lightweight WSGI web application framework (used in the example code but not in the FastAPI-based implementation).
-- **nltk:** For natural language processing tasks such as sentence tokenization.
-- **sentence-transformers:** For generating sentence embeddings using pre-trained models.
-- **transformers:** For utilizing the GPT-2 model to generate text.
-- **pymilvus:** For interacting with the Milvus vector database to store and retrieve embeddings.
-- **nest_asyncio:** To allow nested use of asyncio.run() (useful in Jupyter notebooks).
-- **uvicorn:** An ASGI server for serving the FastAPI application.
-- **fastapi:** A modern, fast web framework for building APIs with Python.
-- **pydantic:** For data validation and settings management using Python type annotations.
+2. **Set up a virtual environment and install dependencies**:
+    ```bash
+    python -m venv venv
+    source venv\Scripts\activate
+    pip install -r requirements.txt
+    ```
 
-# Using Postman for API Testing
-If direct integration with a website is not working, you can use Postman to test the API endpoints.
+3. **Run Milvus using Docker**:
+    ```bash
+    docker pull milvusdb/milvus
+    docker run -d --name milvus_cpu_8000 -p 19530:19530 -p 19121:19121 milvusdb/milvus:latest
+    ```
 
-1. Loading Website Content
-2. Open Postman and create a new POST request.
-3. Set the URL to http://127.0.0.1:8000/load.
-4. In the Body tab, select raw and set the format to JSON.
-5. Enter the JSON body:
+4. **Run the FastAPI application**:
+    ```bash
+    uvicorn main:app --reload
+    ```
 
-         {
-           "url": "https://example.com"
-         }
-6. Click Send to load the website content.
+## Usage
 
-## Querying Content
-1. Open Postman and create a new POST request.
-2. Set the URL to http://127.0.0.1:8000/query.
-3. In the Body tab, select raw and set the format to JSON.
-4. Enter the JSON body:
+1. **Loading Website Content**:
+    Use Postman to send a POST request to `http://127.0.0.1:8000/load` with a JSON body containing the URL to scrape:
+    ```json
+    {
+        "url": "https://en.wikipedia.org/wiki/Large_language_model"
+    }
+    ```
 
-         {
-           "query": "What is the capital of France?",
-           "use_milvus": true
-         }
-5. Click Send to get the query response.
+2. **Querying Content**:
+    Use Postman to send a POST request to `http://127.0.0.1:8000/query` with a JSON body containing the query:
+    ```json
+    {
+        "query": "What is Large Language Model?",
+        "use_milvus": true
+    }
+    ```
 
-# Deployment
-## Local Deployment
-   To run the application locally, ensure you have followed the setup instructions and installed all necessary packages. Use the command:
-   
-     uvicorn main:app --host 127.0.0.1 --port 8000
+## API Endpoints
 
-  
-## Docker Deployment
-   You can use Docker to containerize the application for easier deployment. Create a Dockerfile with the following contents:
+- **`POST /load`**: Scrapes content from the provided URL, preprocesses the text, generates embeddings, stores them in Milvus, and fine-tunes a GPT-2 model.
+    - **Request Body**: `{ "url": "<URL to scrape>" }`
+    - **Response**: `{ "message": "Content loaded, dataset created, embeddings stored, and model fine-tuned successfully" }`
 
-       # Use the official Python image from the Docker Hub
-         FROM python:3.8-slim
-        
-        # Set the working directory
-        WORKDIR /app
-        
-        # Copy the requirements.txt file
-        COPY requirements.txt .
-        
-        # Install the dependencies
-        RUN pip install --no-cache-dir -r requirements.txt
-        
-        # Copy the application code
-        COPY . .
-        
-        # Expose the port the app runs on
-        EXPOSE 8000
-        
-        # Run the application
-        CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+- **`POST /query`**: Queries the stored content and generates a response using the fine-tuned GPT-2 model.
+    - **Request Body**: `{ "query": "<query>", "use_milvus": <boolean> }`
+    - **Response**: `{ "answer": "<generated answer>" }`
 
-   To build and run the Docker container:
-      
-         docker build -t web-content-query-system
-         docker run -p 8000:8000 web-content-query-system
+## Functions and Classes
 
+### Classes
 
- 
+- **`WebScraper`**: 
+  - `__init__(self, url, headers=None)`: Initializes the scraper with a URL.
+  - `extract_paragraphs(self, html_content)`: Extracts paragraphs from the HTML content.
+  - `fetch_and_extract_p(self)`: Fetches the web page content and extracts paragraphs.
 
+### Functions
 
+- **`preprocess_text(sentences)`**: Preprocesses a list of sentences (lowercasing, removing punctuation, tokenizing, removing stop words, and lemmatizing).
+- **`paragraph_to_preprocessed_sentences(paragraph)`**: Converts a paragraph to a list of preprocessed sentences.
+- **`get_embeddings(sentences)`**: Generates embeddings for a list of sentences using a sentence transformer model.
+- **`store_in_milvus(sentences, embeddings)`**: Stores sentences and their embeddings in a Milvus collection.
+- **`fine_tune_gpt2(training_data_path)`**: Fine-tunes a GPT-2 model using the text data at the specified path.
 
+## Project Structure
 
+```
+.
+├── main.py                  # Main FastAPI application
+├── requirements.txt         # Python dependencies
+├── README.md                # Project documentation
+└── web_content.txt          # Fetched and preprocessed web content
+```
 
+## Contributing
 
-
-
-
-
-
-
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
